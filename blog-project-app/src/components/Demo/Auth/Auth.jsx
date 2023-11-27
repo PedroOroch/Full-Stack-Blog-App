@@ -83,7 +83,7 @@ const Auth = ({ modal, setModal}) => {
                 </>) : signReq === "sign-in" ? (
                     <SignIn setSignReq={setSignReq} />
                 ) : signReq === "sign-up" ? (
-                    <SignUp setSignReq={setSignReq}/>
+                    <SignUp setModal={setModal} setSignReq={setSignReq}/>
                 ) : null}
                 <p className='md:w-[30rem] mx-auto text-center text-sm mb-[3rem] pl-5 pr-5'>
                     Click "Sign In" to agree to Medium's Terms of Service and acknowledge that Medium's Privacy Policy applies to you
