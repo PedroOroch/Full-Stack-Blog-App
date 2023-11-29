@@ -10,14 +10,21 @@ import { CiSearch } from "react-icons/ci";
 import Search from './Search';
 import Modal from '../../../utils/Modal';
 import UserModal from './UserModal';
+import { Blog } from '../../../Context/Context';
+import Loading from '../../Loading/Loading';
 
 const HomeHeader = () => {
+  
+  const { allUsers, UserLoading, currentUser } = Blog( );
   const [modal, setModal] = useState(false);
   const [searchModal, setSearchModal] = useState(false);
+
+  const getUserData  = allUsers.find((user) => user.id === currentUser?.uid);
   const hidden = modal ? "visible opacity-100" : "invisible opacity-0";
 
   return (
     <header className='border-b border-gray-200'>
+      {UserLoading && <Loading />}
       <div className='size h-[60px] flex items-center justify-between'>
         {/* left side */}
         <div className='flex items-center gap-3'>
@@ -48,7 +55,7 @@ const HomeHeader = () => {
             <img
               onClick={( ) => setModal(true)}
               className='w-[2.3rem] h-[2.3rem] object-cover rounded-full cursor-pointer'
-              src='/profile.png'
+              src={getUserData?.userImg ? getUserData?.userImg : "/profile.png"}
               alt='profile-img'
             />
             <span onClick={( ) => setModal(true)} className='text-gray-500 cursor-pointer'>
@@ -56,7 +63,7 @@ const HomeHeader = () => {
             </span>
             <Modal modal={modal} setModal={setModal} hidden={hidden}>
               <div className={`${modal ? 'visible opacity-100%' : 'invisible opacity-0'} transition-all duration-100`}>
-                <UserModal />
+                <UserModal setModal={setModal} />
               </div>
             </Modal>
           </div>

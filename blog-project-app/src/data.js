@@ -44,6 +44,6 @@ export const discoverActions= [
     "Terms",
     "About",
     "Text to speech",
-    "C#",
+    "Teams",
 
 ];
