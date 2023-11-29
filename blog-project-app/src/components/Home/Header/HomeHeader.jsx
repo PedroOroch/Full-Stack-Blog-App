@@ -4,6 +4,8 @@ import { FaReact } from 'react-icons/fa';
 import { LiaEditSolid } from 'react-icons/lia';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import { MdKeyboardArrowDown } from 'react-icons/md';
+import { CiSearch } from "react-icons/ci";
+
 
 import Search from './Search';
 import Modal from '../../../utils/Modal';
@@ -11,10 +13,8 @@ import UserModal from './UserModal';
 
 const HomeHeader = () => {
   const [modal, setModal] = useState(false);
-
-
-  console.log(setModal); // Use `modal` em vez de `setModal` aqui
-  const hidden = modal ? "visible opacity-100" : "invisible opacity-0"
+  const [searchModal, setSearchModal] = useState(false);
+  const hidden = modal ? "visible opacity-100" : "invisible opacity-0";
 
   return (
     <header className='border-b border-gray-200'>
@@ -26,10 +26,15 @@ const HomeHeader = () => {
               <FaReact />
             </span>
           </Link>
-          <Search />
+          <Search modal={searchModal} setModal={setSearchModal}/>
         </div>
         {/* right side */}
         <div className='flex items-center gap-3 sm:gap-7'>
+          <span 
+              onClick={( ) => setSearchModal(true)}
+              className='flex sm:hidden text-3xl text-gray-500 cursor-pointer'>
+            <CiSearch />
+          </span>
           <Link to='/write' className='hidden md:flex items-center gap-1 text-gray-500'>
             <span className='text-3xl'>
               <LiaEditSolid />
