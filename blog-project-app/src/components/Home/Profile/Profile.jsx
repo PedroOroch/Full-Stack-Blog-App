@@ -34,7 +34,6 @@ const Profile = () => {
 
     const hidden = modal ? "visible opacity-100" : "invisible opacity-0";
     const getUserData = allUsers.find((user) => user.id === userId);
-    console.log(getUserData);
   return ( 
     <section className='size flex gap-[4rem] relative'>
         {/* user activities */}
@@ -91,7 +90,7 @@ const Profile = () => {
                         <h2 className='py-2 font-bold capitalize'>Oroch</h2>
                         <p className='text-gray-400 first-letter:uppercase text-sm'>
                            {/* {getUserData.bio} */}
-                           texto
+                           {getUserData?.bio}
                         </p>
                         <button 
                             onClick={( ) => setEditModal(true)}
